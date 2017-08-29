@@ -11,7 +11,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 #include <time.h>
+#include <math.h>
 
 typedef enum {a, b, c, d, e, f, g, h} square;
 const int knight[10][2] = {{0, 1}, {0, 2}, {0, 3}, {0, 4}, {1, 2}, {1, 3}, {1, 4}, {2, 3}, {2, 4}, {3, 4}};
@@ -163,5 +165,75 @@ const char *num2pos(int num) {
 }
 
 int pos2num(char pos[8]) {
+
+	square b[16] = {3, 9, 33, 129, 6, 12, 36, 132, 18, 24, 48, 144, 66, 72, 96, 192};
+	square b1, b2, i, posq, posn;
+	int num;
+
+	/* Convert everything to uppercase */
+	for (i = a; i <= h; i++)
+		pos[i] = toupper(pos[i]);
+
+	/* Detect king outside rooks */
+	for (i = a; i <= h; i++)
+		if (pos[i] == 'R')
+			break; /* First rook */
+	for (++i; i<=h; i++)
+		if (pos[i] == 'R')
+			return -1; /* Adjacent rooks, i.e. king outside */
+		else if (pos[i] == 'K')
+			break;
+
+	/* Bishop id */
+	for (i = a; i <= h; i++)
+		if (pos[i] ==  'B') {
+			b1 = i;
+			break;
+		}
+	for (++i; i <= h; i++)
+		if (pos[i] ==  'B') {
+			b2 = i;
+			break;
+		}
+	if ((b2-b1+1) % 2 != 0)
+		return -1; /* Same colored bishops */
+
+	/* We reuse the num to hold the key to find the bishop id */
+	num = pow(2,b1) + pow(2,b2);
+	for (i = 0; i < 16; i++)
+		if (b[i] == num) {
+			num = i;
+			break;
+		}
+	/* Queen's position */
+	for (posq = i = a; i <= h; i++, posq++) {
+		if (pos[i] == 'Q')
+			break;
+		else if (pos[i] == 'B')
+			posq--;
+	}
+
+	/* Knight's position */
+	/* We reuse b1 and b2 for the knight's position */
+	for (b1 = i = a; i <= h; i++) {
+		if (pos[i] == 'N')
+			break;
+		if (pos[i] != 'Q' && pos[i] != 'B')
+			b1++;
+	}
+	for (++i, b2 = b1+1; i <= h; i++) {
+		if (pos[i] == 'N')
+			break;
+		if (pos[i] != 'Q' && pos[i] != 'B')
+			b2++;
+	}
+
+	for (i = 0; i < 10; i++)
+		if (knight[i][0] == b1 && knight[i][1] == b2)
+			break;
+
+	num += 16*posq + 96*i;
+
+	return num;
 
 }
