@@ -19,18 +19,18 @@ Usage: frcc [NUMBER/POSITION]
 
     frcc  NUMBER
 
-    NUMBER of the Fischer Random Chess position (0 to 959 inclusive).
+      NUMBER of the Fischer Random Chess position (0 to 959 inclusive).
 
-    The output shows the position of the major white pieces
+      The output shows the position of the major white pieces
 
-    on the first rank, from the "a" file to the "h" file.
+      on the first rank, from the "a" file to the "h" file.
 
     frcc POSITION
 
-    POSITION string for which it is desired to find out
+      POSITION string for which it is desired to find out
 
-    the Fischer Random number. For example: RNBQKBNR
+      the Fischer Random number. For example: RNBQKBNR
 
     frcc
 
-    With no arguments it returns a random position string.
+      With no arguments it returns a random position string.
