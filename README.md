@@ -7,6 +7,14 @@ There's a Makefile just for that purpose, simply run:
 
 make
 
+Test:
+----
+There's a test to see if the conversion between number and string is bijective. 
+It runs the program with numbers from 0 to 959 and the resulting string is passed again to the program and checked against the number.
+Run it with:
+
+make test
+
 Instalation:
 -----------
 Sorry, no install commands or scripts. Just have fun, if you like it, install it by hand :)
