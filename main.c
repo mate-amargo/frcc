@@ -28,8 +28,8 @@ int main(int argc, char **argv) {
 	 	printf("Usage: %s [NUMBER/POSITION]\n\n", argv[0]);
 		printf("  %s  NUMBER\n", argv[0]);
 		puts("    NUMBER of the Fischer Random Chess position (0 to 959 inclusive).");
-		puts("    The output shows the position of the major white pieces,");
-		puts("    on the first rank from the \"a\" file to the \"h\" file.");
+		puts("    The output shows the position of the major white pieces");
+		puts("    on the first rank, from the \"a\" file to the \"h\" file.");
 		printf("  %s POSITION\n", argv[0]);
 		puts("    POSITION string for which it is desired to find out");
 		puts("    the Fischer Random number. For example: RNBQKBNR");
