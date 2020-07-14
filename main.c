@@ -23,9 +23,11 @@ int pos2num(char pos[8]);
 
 int main(int argc, char **argv) {
 
+	int num;
+
 	void help(void) {
 
-	 	printf("Usage: %s [NUMBER/POSITION]\n\n", argv[0]);
+		printf("Usage: %s [NUMBER/POSITION]\n\n", argv[0]);
 		printf("  %s  NUMBER\n", argv[0]);
 		puts("    NUMBER of the Fischer Random Chess position (0 to 959 inclusive).");
 		puts("    The output shows the position of the major white pieces");
@@ -43,7 +45,8 @@ int main(int argc, char **argv) {
 
 	/* Generate a random string if there were no arguments */
 	if (argc == 1) {
-		printf("%s\n", num2pos(rand() % 960));
+		num = rand() % 960;
+		printf("%s #%d\n", num2pos(num), num);
 		exit(EXIT_SUCCESS);
 	}
 
@@ -52,7 +55,7 @@ int main(int argc, char **argv) {
 
 	/* We use strtol to parse the argument. */
 	/* The first character that's not a digit is pointed by endp */
-	int num; char *endp;
+	char *endp;
 	num = strtol(argv[1], &endp, 10);
 	if (endp == argv[1]) { /* Pointer comparision */
 	/* Argument was a string => Find the position number */
@@ -83,7 +86,7 @@ int main(int argc, char **argv) {
 			help();
 		else
 			printf("%d\n", num);
-	} else if (*endp == '\0' && num >= 0 && num <= 959) 
+	} else if (*endp == '\0' && num >= 0 && num <= 959)
 		/* Argument was a number => Find the position string */
 		printf("%s\n", num2pos(num));
 	else
@@ -101,9 +104,9 @@ const char *num2pos(int num) {
 	square posq, posn, i;
 
 	/* Set the white Bishop (B) */
-  pos[wb[num % 4]] = 'B';
-  num /= 4;
-	
+	pos[wb[num % 4]] = 'B';
+	num /= 4;
+
 	/* Set the black Bishop (B) */
 	pos[bb[num % 4]] = 'B';
 	num /= 4;
@@ -138,7 +141,7 @@ const char *num2pos(int num) {
 		}
 		i++;
 	}
-	
+
 	/* Set the leftmost Rook (R) */
 	for (i = a; i <= h; i++)
 		if (pos[i] == '\0') {

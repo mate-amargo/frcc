@@ -9,7 +9,7 @@ make
 
 Test:
 ----
-There's a test to see if the conversion between number and string is bijective. 
+There's a test to see if the conversion between number and string is bijective.
 It runs the program with numbers from 0 to 959 and the resulting string is passed again to the program and checked against the number.
 Run it with:
 
@@ -41,4 +41,4 @@ Usage: frcc [NUMBER/POSITION]
 
     frcc
 
-      With no arguments it returns a random position string.
+      With no arguments it returns a random position string and its corresponding number.
